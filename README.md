@@ -1,5 +1,3 @@
-# Drexel Shaft Protection
+# Register Me Silly
 
-Prevents your tiny student butthole from being brutally violated by drexel's
-aweful course registration system. Repeatedly checks webtms for enrollment
-info of courses
+Repeatedly checks Drexel's Term Master Schedule for availability of class sections

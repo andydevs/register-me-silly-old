@@ -1,9 +1,7 @@
 """
-Drexel Shaft Protection
+Register Me Silly
 
-Prevents your tiny student butthole from being brutally violated by drexel's
-aweful course registration system. Repeatedly checks webtms for enrollment
-info of courses
+Repeatedly checks Drexel's Term Master Schedule for availability of class sections
 
 Author:  Anshul Kharbanda
 Created: 9 - 21 - 2018
@@ -11,7 +9,7 @@ Created: 9 - 21 - 2018
 import unittest
 import unittest.mock
 import time
-import drexel_shaft_protection as dshaft
+import register_me_silly as rms
 import config
 from requests import get
 from bs4 import BeautifulSoup
@@ -26,7 +24,7 @@ class TriggerTest(unittest.TestCase):
         """
         Tests ifttt webhooks trigger method
         """
-        response = dshaft.trigger(
+        response = rms.trigger(
             self.test_event,
             key=config.key,
             value1=f'value 1 {time.time()}',
@@ -54,7 +52,7 @@ class IsEnrollmentRowTest(unittest.TestCase):
         soup = BeautifulSoup(get(self.test_url).content, 'html.parser')
 
         # Get enrollment row
-        enrollment_row = soup.find(dshaft.is_enrollment_row)
+        enrollment_row = soup.find(rms.is_enrollment_row)
 
         # Run checks
         cells = enrollment_row.find_all('td')
@@ -72,14 +70,14 @@ class HasEnrollmentAvailableTest(unittest.TestCase):
         """
         Tests has_enrollment_available function for available
         """
-        available = dshaft.has_enrollment_available(self.test_available_url)
+        available = rms.has_enrollment_available(self.test_available_url)
         self.assertTrue(available, 'Enrollment should be available for this url')
 
     def test_test_has_enrollment_available_for_unavailable(self):
         """
         Tests has_enrollment_available function for unavailable
         """
-        unavailable = dshaft.has_enrollment_available(self.test_unavailable_url)
+        unavailable = rms.has_enrollment_available(self.test_unavailable_url)
         self.assertFalse(unavailable, 'Enrollment should be unavailable for this url')
 
 class CheckEnrollmentForClassTest(unittest.TestCase):
@@ -91,12 +89,12 @@ class CheckEnrollmentForClassTest(unittest.TestCase):
     test_unavailable_id = 'ENGR201'
     test_unavailable_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails2&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDC0NToAa3xJwchcDSxCKgIgVDC11DSwAnUj6JpAAAAA%3D%3D&sp=SE&sp=SENGR&sp=S10780&sp=S201&sp=6'
 
-    @unittest.mock.patch('drexel_shaft_protection.trigger')
+    @unittest.mock.patch('register_me_silly.trigger')
     def test_check_enrollment_for_class_available(self, mock_trigger):
         """
         Tests check_enrollment_for_class function for available
         """
-        dshaft.check_enrollment_for_class(
+        rms.check_enrollment_for_class(
             self.test_available_id,
             self.test_available_url,
             key=config.key)
@@ -105,12 +103,12 @@ class CheckEnrollmentForClassTest(unittest.TestCase):
             key=config.key,
             value1=self.test_available_id)
 
-    @unittest.mock.patch('drexel_shaft_protection.trigger')
+    @unittest.mock.patch('register_me_silly.trigger')
     def test_check_enrollment_for_class_unavailable(self, mock_trigger):
         """
         Tests check_enrollment_for_class function for unavailable
         """
-        dshaft.check_enrollment_for_class(
+        rms.check_enrollment_for_class(
             self.test_unavailable_id,
             self.test_unavailable_url,
             key=config.key)

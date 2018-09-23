@@ -1,14 +1,12 @@
 """
-Drexel Shaft Protection
+Register Me Silly
 
-Prevents your tiny student butthole from being brutally violated by drexel's
-aweful course registration system. Repeatedly checks webtms for enrollment
-info of courses
+Repeatedly checks Drexel's Term Master Schedule for availability of class sections
 
 Author:  Anshul Kharbanda
 Created: 9 - 21 - 2018
 """
-from drexel_shaft_protection import *
+from register_me_silly import *
 from config import *
 
 # Main routine
