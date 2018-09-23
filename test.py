@@ -16,12 +16,21 @@ class TriggerTest(unittest.TestCase):
     """
     Tests Trigger method
     """
+    test_event = 'test_text'
+
     def test_trigger(self):
         """
         Tests ifttt webhooks trigger method
         """
-        response = dshaft.trigger('test_text', key=config.key)
-        self.assertEqual(200, response.status_code, 'Response status code should be 200')
+        response = dshaft.trigger(self.test_event, key=config.key)
+        self.assertEqual(
+            response.status_code, 200,
+            'Response status code should be 200')
+        self.assertEqual(
+            response.text,
+            f'Congratulations! You\'ve fired the {self.test_event} event',
+            'Response text should be correct')
+        print('From test_trigger: Make sure you\'ve recieved a text message!')
 
 if __name__ == '__main__':
     unittest.main()
