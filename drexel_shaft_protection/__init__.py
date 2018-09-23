@@ -42,7 +42,7 @@ def has_enrollment_available(webpage):
     else:
         return True
 
-def trigger(event, data, key):
+def trigger(event, data={}, key=''):
     """
     Trigger event on remote server with key
 
