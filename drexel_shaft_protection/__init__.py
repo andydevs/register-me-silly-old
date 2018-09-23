@@ -10,7 +10,7 @@ Created: 9 - 21 - 2018
 """
 from requests import post, get
 from bs4 import BeautifulSoup
-import config
+from time import sleep
 
 def trigger(event, key='', value1='', value2='', value3=''):
     """
@@ -78,3 +78,14 @@ def check_enrollment_for_all_classes(classes, key):
     """
     for classid, webpage in classes.items():
         check_enrollment_for_class(classid, webpage, key)
+
+def run_periodally(interval, func):
+    """
+    Runs the given function periodically every interval
+
+    :param interval: the interval to run by
+    :param func: the function to run
+    """
+    while True:
+        func()
+        sleep(interval)
