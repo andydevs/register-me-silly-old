@@ -9,5 +9,5 @@ Author:  Anshul Kharbanda
 Created: 9 - 21 - 2018
 """
 
-# Configured key
+# IFTTT Maker key
 key='bxoTj4tM935zzKaQcJUQtO'
