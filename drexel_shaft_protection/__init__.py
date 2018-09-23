@@ -58,7 +58,8 @@ def check_enrollment_for_class(classid, webpage, key):
     Checks enrollment for class
 
     :param classid: id for class
-    :parma webpage: webpage for class
+    :param webpage: webpage for class
+    :param key: api key used
     """
     print(f'Checking enrollment for {classid}...')
     if has_enrollment_available(webpage):
@@ -67,3 +68,13 @@ def check_enrollment_for_class(classid, webpage, key):
         trigger('class_enroll_available', key=key, value1=classid)
     else:
         print('Enrollment unavailable...')
+
+def check_enrollment_for_all_classes(classes, key):
+    """
+    Checks enrollment for all classes
+
+    :param classes: classes to check
+    :param key: api key to use for messages
+    """
+    for classid, webpage in classes.items():
+        check_enrollment_for_class(classid, webpage, key)
