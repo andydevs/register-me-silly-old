@@ -55,18 +55,3 @@ def trigger(event, data, key):
     return post(
         f'https://maker.ifttt.com/trigger/{event}/with/key/{key}',
         data=data)
-
-def enrollment_check_routine_for_class(classid, webpage):
-    """
-    Checks the enrollment info for the given class
-
-    :param classid: the class id name
-    :param webpage: the class webpage url
-    """
-    print('Checking enrollment for ' + classid + '...')
-    if has_enrollment_available(webpage):
-        print('ENROLLMENT IS AVAILABLE!!!')
-        PRINT('Sending message...')
-        trigger('enroll_available', { 'classid': classid })
-    else:
-        print('Enrollment unavailable...')
