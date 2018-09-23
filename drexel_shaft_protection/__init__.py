@@ -28,13 +28,8 @@ def has_enrollment_available(webpage):
     # Get soup
     soup = BeautifulSoup(get(webpage).content, 'html.parser')
 
-    # Find enrollment row
-    enrollment = soup.find(is_enrollment_row)
-    if enrollment:
-        estring = enrollment.find_all('td')[1].string.lower()
-        return 'closed' in estring
-    else:
-        return True
+    # Return true if enrollment row is not closed
+    return soup.find(is_enrollment_row).find_all('td')[1].get_text() != 'CLOSED'
 
 def trigger(event, data={}, key=''):
     """

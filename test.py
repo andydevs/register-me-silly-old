@@ -54,6 +54,26 @@ class IsEnrollmentRowTest(unittest.TestCase):
         self.assertEqual(len(cells), 2, 'Row has two cells')
         self.assertEqual(cells[0].get_text(), 'Enroll', 'First cell is title Enroll')
 
+class HasEnrollmentAvailableTest(unittest.TestCase):
+    """
+    Tests has_enrollment_available function
+    """
+    test_available_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDCyNToJHhmXlAaYXA0sQiEG1ooWtoCQAiXVdwpgAAAA%3D%3D&sp=SA&sp=SANIM&sp=S23356&sp=S110&sp=0'
+    test_unavailable_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails2&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDC0NToAa3xJwchcDSxCKgIgVDC11DSwAnUj6JpAAAAA%3D%3D&sp=SE&sp=SENGR&sp=S10780&sp=S201&sp=6'
+
+    def test_has_enrollment_available_for_available(self):
+        """
+        Tests has_enrollment_available function for available
+        """
+        available = dshaft.has_enrollment_available(self.test_available_url)
+        self.assertTrue(available, 'Enrollment should be available for this url')
+
+    def test_test_has_enrollment_available_for_unavailable(self):
+        """
+        Tests has_enrollment_available function for unavailable
+        """
+        unavailable = dshaft.has_enrollment_available(self.test_unavailable_url)
+        self.assertFalse(unavailable, 'Enrollment should be unavailable for this url')
 
 if __name__ == '__main__':
     unittest.main()
