@@ -8,7 +8,7 @@ Created: 9 - 21 - 2018
 """
 
 # IFTTT Maker key
-key='bxoTj4tM935zzKaQcJUQtO'
+key='[enter your key]'
 
 # Check every 15 minutes
 interval = 15*60
