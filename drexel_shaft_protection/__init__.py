@@ -11,6 +11,14 @@ Created: 9 - 21 - 2018
 from requests import post, get
 from bs4 import BeautifulSoup
 
+def is_enrollment_row(tag):
+    is_tr = tag.name == 'tr'
+    cells = tag.find_all('td')
+    has_2_cells = len(cells) == 2
+    has_enrollment_title = cells[0].get_text() == 'Enroll' \
+        if has_2_cells else False
+    return is_tr and has_2_cells and has_enrollment_title
+
 def has_enrollment_available(webpage):
     """
     Returns true if the webpage has enrollment available
@@ -19,20 +27,6 @@ def has_enrollment_available(webpage):
     """
     # Get soup
     soup = BeautifulSoup(get(webpage).content, 'html.parser')
-
-    def is_enrollment_row(tag):
-        """
-        Returns true if the tag is the enrollment row
-
-        :param tag: the tag to check
-
-        :return: true if the tag is the enrollment row
-        """
-        is_tr = tag.name == 'tr'
-        cells = tag.find_all('td')
-        has_2_cells = len(cells) == 2
-        is_enrollment_cell = 'enroll' in cells[0].string.lower()
-        return is_tr and has_2_cells and is_enrollment_cell
 
     # Find enrollment row
     enrollment = soup.find(is_enrollment_row)
