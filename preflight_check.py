@@ -8,6 +8,7 @@ Created: 9 - 21 - 2018
 """
 from config import *
 
+# Header
 header = """
 Register Me Silly
 
@@ -17,8 +18,10 @@ Author:  Anshul Kharbanda
 Created: 9 - 21 - 2018
 """
 
+# Get key from user
 key = input('Enter your api key: ')
 
+# Write new configs to config.py
 with open('config.py', 'w+') as f:
     f.write('"""' + header + '"""\n\n')
     f.write('# IFTTT Maker Key\n')

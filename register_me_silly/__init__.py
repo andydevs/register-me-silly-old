@@ -45,11 +45,17 @@ def has_enrollment_available(webpage):
 
     :param webpage: the webpage of the class to pull from
     """
-    # Get soup
-    soup = BeautifulSoup(get(webpage).content, 'html.parser')
+    try:
+        
+        # Get soup
+        soup = BeautifulSoup(get(webpage).content, 'html.parser')
 
-    # Return true if enrollment row is not closed
-    return soup.find(is_enrollment_row).find_all('td')[1].get_text() != 'CLOSED'
+        # Return true if enrollment row is not closed
+        return soup.find(is_enrollment_row).find_all('td')[1].get_text() != 'CLOSED'
+
+    # Retrn false if anything
+    except Exception as e:
+        return False
 
 def check_enrollment_for_class(classid, webpage, key):
     """
