@@ -19,6 +19,8 @@ Author:  Anshul Kharbanda
 Created: 9 - 21 - 2018
 """
 
+# TODO: Build a TKinter UI for adding classes
+
 # Get key from user
 key = input('Enter your api key: ')
 

@@ -46,7 +46,7 @@ def has_enrollment_available(webpage):
     :param webpage: the webpage of the class to pull from
     """
     try:
-        
+
         # Get soup
         soup = BeautifulSoup(get(webpage).content, 'html.parser')
 
@@ -65,13 +65,8 @@ def check_enrollment_for_class(classid, webpage, key):
     :param webpage: webpage for class
     :param key: api key used
     """
-    print(f'Checking enrollment for {classid}...')
     if has_enrollment_available(webpage):
-        print('OMFG ENROLLMENT AVAILABLE!!!')
-        print('Sending a goddamn text message RIGHT NOW!!!')
         trigger('class_enroll_available', key=key, value1=classid)
-    else:
-        print('Enrollment unavailable...')
 
 def check_enrollment_for_all_classes(classes, key):
     """

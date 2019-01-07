@@ -37,13 +37,12 @@ class TriggerTest(unittest.TestCase):
             response.text,
             f'Congratulations! You\'ve fired the {self.test_event} event',
             'Response text should be correct')
-        print('From test_trigger: Make sure you\'ve recieved a text message!')
 
 class IsEnrollmentRowTest(unittest.TestCase):
     """
     Tests is_enrollment_row function
     """
-    test_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails2&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDC0NToAa3xJwchcDSxCKgIgVDC11DSwAnUj6JpAAAAA%3D%3D&sp=SA&sp=SANIM&sp=S13405&sp=S100&sp=0'
+    test_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDCyNToJHhmXlAaYXA0sQiEG1ooWtoCQAiXVdwpgAAAA%3D%3D&sp=SA&sp=SANIM&sp=S21401&sp=S212&sp=0'
 
     def test_is_enrollment_row(self):
         """
@@ -59,58 +58,58 @@ class IsEnrollmentRowTest(unittest.TestCase):
         self.assertEqual(len(cells), 2, 'Row has two cells')
         self.assertEqual(cells[0].get_text(), 'Enroll', 'First cell is title Enroll')
 
-class HasEnrollmentAvailableTest(unittest.TestCase):
+class AvailableClassCheckTest(unittest.TestCase):
     """
-    Tests has_enrollment_available function
+    Docstring for AvailableClassCheckTest
     """
-    test_available_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDCyNToJHhmXlAaYXA0sQiEG1ooWtoCQAiXVdwpgAAAA%3D%3D&sp=SA&sp=SANIM&sp=S23356&sp=S110&sp=0'
-    test_unavailable_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails2&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDC0NToAa3xJwchcDSxCKgIgVDC11DSwAnUj6JpAAAAA%3D%3D&sp=SE&sp=SENGR&sp=S10780&sp=S201&sp=6'
+    test_id = 'ANIM212'
+    test_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDCyNToJHhmXlAaYXA0sQiEG1ooWtoCQAiXVdwpgAAAA%3D%3D&sp=SA&sp=SANIM&sp=S21401&sp=S212&sp=0'
 
-    def test_has_enrollment_available_for_available(self):
+    def test_has_enrollment_available(self):
         """
-        Tests has_enrollment_available function for available
+        Tests has_enrollment_available function
         """
-        available = rms.has_enrollment_available(self.test_available_url)
-        self.assertTrue(available, 'Enrollment should be available for this url')
-
-    def test_test_has_enrollment_available_for_unavailable(self):
-        """
-        Tests has_enrollment_available function for unavailable
-        """
-        unavailable = rms.has_enrollment_available(self.test_unavailable_url)
-        self.assertFalse(unavailable, 'Enrollment should be unavailable for this url')
-
-class CheckEnrollmentForClassTest(unittest.TestCase):
-    """
-    Tests check_enrollment_for_class function
-    """
-    test_available_id = 'ANIM110'
-    test_available_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDCyNToJHhmXlAaYXA0sQiEG1ooWtoCQAiXVdwpgAAAA%3D%3D&sp=SA&sp=SANIM&sp=S23356&sp=S110&sp=0'
-    test_unavailable_id = 'ENGR201'
-    test_unavailable_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails2&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDC0NToAa3xJwchcDSxCKgIgVDC11DSwAnUj6JpAAAAA%3D%3D&sp=SE&sp=SENGR&sp=S10780&sp=S201&sp=6'
+        self.assertTrue(
+            rms.has_enrollment_available(self.test_url),
+            'Enrollment should be available for this url')
 
     @unittest.mock.patch('register_me_silly.trigger')
-    def test_check_enrollment_for_class_available(self, mock_trigger):
+    def test_check_enrollment_for_class(self, mock_trigger):
         """
         Tests check_enrollment_for_class function for available
         """
         rms.check_enrollment_for_class(
-            self.test_available_id,
-            self.test_available_url,
+            self.test_id,
+            self.test_url,
             key=config.key)
         mock_trigger.assert_called_with(
             'class_enroll_available',
             key=config.key,
-            value1=self.test_available_id)
+            value1=self.test_id)
+
+class UnavailableClassCheckTest(unittest.TestCase):
+    """
+    Docstring for UnavailableClassCheckTest
+    """
+    test_id = 'ANIM212'
+    test_url = 'https://termmasterschedule.drexel.edu/webtms_du/app?component=courseDetails2&page=CourseList&service=direct&sp=ZH4sIAAAAAAAAAFvzloG1uIhBPjWlVC%2BlKLUiNUcvs6hErzw1qSS3WC8lsSRRLyS1KJcBAhiZGJh9GNgTk0tCMnNTSxhEfLISyxL1iwtz9EECxSWJuQXWPgwcJUAtzvkpQBVCEBU5iXnp%2BsElRZl56TB5l9Ti5EKGOgamioKCEgY2IwNDCyNToJHhmXlAaYXA0sQiEG1ooWtoCQAiXVdwpgAAAA%3D%3D&sp=SA&sp=SANIM&sp=S23998&sp=S212&sp=0'
+
+    def test_has_enrollment_available(self):
+        """
+        Tests has_enrollment_available function
+        """
+        self.assertFalse(
+            rms.has_enrollment_available(self.test_url),
+            'Enrollment should be unavailable for this url')
 
     @unittest.mock.patch('register_me_silly.trigger')
-    def test_check_enrollment_for_class_unavailable(self, mock_trigger):
+    def test_check_enrollment_for_class(self, mock_trigger):
         """
         Tests check_enrollment_for_class function for unavailable
         """
         rms.check_enrollment_for_class(
-            self.test_unavailable_id,
-            self.test_unavailable_url,
+            self.test_id,
+            self.test_url,
             key=config.key)
         mock_trigger.assert_not_called()
 
