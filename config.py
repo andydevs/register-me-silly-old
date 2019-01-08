@@ -8,10 +8,13 @@ Created: 9 - 21 - 2018
 """
 
 # IFTTT Maker Key
-key = '[your key]'
+key = 'dsfsadfsa'
 
 # Check every interval
-interval = 900
+interval = 800
 
 # Classes to check
-classes = {}
+classes = [
+
+]
+

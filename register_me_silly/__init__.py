@@ -75,7 +75,7 @@ def check_enrollment_for_all_classes(classes, key):
     :param classes: classes to check
     :param key: api key to use for messages
     """
-    for classid, webpage in classes.items():
+    for classid, webpage in classes:
         check_enrollment_for_class(classid, webpage, key)
 
 def run_periodally(interval, func):
