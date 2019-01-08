@@ -8,10 +8,10 @@ Created: 9 - 21 - 2018
 """
 
 # IFTTT Maker Key
-key = 'dsfsadfsa'
+key = 'abcdefghijklmnop'
 
 # Check every interval
-interval = 800
+interval = 700
 
 # Classes to check
 classes = [
