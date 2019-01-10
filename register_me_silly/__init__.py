@@ -8,7 +8,6 @@ Created: 9 - 21 - 2018
 """
 from requests import post, get
 from bs4 import BeautifulSoup
-from time import sleep
 
 def trigger(event, key='', value1='', value2='', value3=''):
     """
@@ -57,16 +56,18 @@ def has_enrollment_available(webpage):
     except Exception as e:
         return False
 
-def check_enrollment_for_class(classid, webpage, key):
+def check_enrollment_for_class(classid, url, key):
     """
     Checks enrollment for class
 
     :param classid: id for class
-    :param webpage: webpage for class
+    :param url: url for class
     :param key: api key used
     """
-    if has_enrollment_available(webpage):
-        trigger('class_enroll_available', key=key, value1=classid)
+    if has_enrollment_available(url):
+        trigger('class_enroll_available',
+            key=key,
+            value1=classid)
 
 def check_enrollment_for_all_classes(classes, key):
     """
@@ -75,16 +76,8 @@ def check_enrollment_for_all_classes(classes, key):
     :param classes: classes to check
     :param key: api key to use for messages
     """
-    for classid, webpage in classes:
-        check_enrollment_for_class(classid, webpage, key)
-
-def run_periodally(interval, func):
-    """
-    Runs the given function periodically every interval
-
-    :param interval: the interval to run by
-    :param func: the function to run
-    """
-    while True:
-        func()
-        sleep(interval)
+    for klass in classes:
+        check_enrollment_for_class(
+            classid=klass['classid'],
+            url=klass['url'],
+            key=key)

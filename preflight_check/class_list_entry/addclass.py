@@ -39,6 +39,7 @@ class AddClass(Frame):
         Docstring for add_class
         """
         if self.add_command:
-            self.add_command(
-                self.id_entry.value,
-                self.url_entry.value)
+            self.add_command({
+                'classid': self.id_entry.value,
+                'url': self.url_entry.value
+            })

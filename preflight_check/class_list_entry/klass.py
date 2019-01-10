@@ -12,18 +12,18 @@ class Class(Frame):
     """
     Docstring for Class
     """
-    def __init__(self, master=None, class_id='', url=''):
+    def __init__(self, master=None, klass={'classid':'', 'url':''}):
         """
         Initializes instance
         """
         super(Class, self).__init__(master, borderwidth=1, relief='solid')
 
         # Class ID label
-        self.class_id_label = Label(self, text=class_id)
+        self.class_id_label = Label(self, text=klass['classid'])
         self.class_id_label.pack(anchor=W, padx=1, pady=1)
 
         # Class URL Label
-        self.url_label = Label(self, text=url)
+        self.url_label = Label(self, text=klass['url'])
         self.url_label.pack(anchor=W, padx=1, pady=1)
 
         # Delete Class Button
@@ -41,7 +41,7 @@ class Class(Frame):
         """
         Docstring for value property
         """
-        return (
-            self.class_id_label['text'],
-            self.url_label['text']
-        )
+        return {
+            'classid': self.class_id_label['text'],
+            'url': self.url_label['text']
+        }

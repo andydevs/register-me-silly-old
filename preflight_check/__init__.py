@@ -11,7 +11,7 @@ from tkinter import messagebox
 from .labeled.entry import LabeledEntry
 from .labeled.spinbox import LabeledSpinbox
 from .class_list_entry import *
-from .write_config import write_config_file
+from .config import write_config_file
 
 class App(Frame):
     """

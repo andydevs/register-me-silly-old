@@ -20,14 +20,14 @@ class ClassList(Frame):
         super(ClassList, self).__init__(master)
 
         # Set classes
-        for class_id, class_url in classes:
-            self.add_class(class_id, class_url)
+        for klass in classes:
+            self.add_class(klass)
 
-    def add_class(self, class_id, class_url):
+    def add_class(self, klass):
         """
         Docstring for add_class
         """
-        klass = Class(self, class_id=class_id, url=class_url)
+        klass = Class(self, klass=klass)
         klass.pack(padx=2, pady=2, fill=X)
 
     @property

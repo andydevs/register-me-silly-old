@@ -6,16 +6,17 @@ Repeatedly checks Drexel's Term Master Schedule for availability of class sectio
 Author:  Anshul Kharbanda
 Created: 9 - 21 - 2018
 """
-import config
+from .config import read_config_file
 from tkinter import Tk, X
 from . import App
 
 if __name__ == '__main__':
     window = Tk()
+    key, interval, classes = read_config_file()
     app = App(window,
-        key=config.key,
-        interval=config.interval,
-        classes=config.classes)
+        key=key,
+        interval=interval,
+        classes=classes)
     app.pack(fill=X)
     window.title('Configure Register-Me-Silly')
     window.minsize(400, 300)

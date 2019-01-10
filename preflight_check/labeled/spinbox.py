@@ -20,6 +20,6 @@ class LabeledSpinbox(LabeledInput):
         super(LabeledSpinbox, self).__init__(master, title)
 
         # Value for entry
-        self.entry = Spinbox(self, from_=0, to=10000)
+        self.entry = Spinbox(self, from_=0, to=1000)
         self.entry.pack(side=TOP, anchor=W, fill=X)
         self.entry.insert(0, value)
