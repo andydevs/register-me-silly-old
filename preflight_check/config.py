@@ -22,8 +22,9 @@ def write_config_file(key='', interval=1000, classes=[]):
     Docstring for write_config_file
     """
     with open('config.yaml', 'w+') as f:
-        yaml.dump({
+        filedata = yaml.dump({
             'key': key,
             'interval': interval,
             'classes': classes
-        }, f)
+        }, default_flow_style=False)
+        f.write(filedata)

@@ -49,6 +49,6 @@ class App(Frame):
         """
         write_config_file(
             key=self.key_entry.value,
-            interval=self.interval_entry.value,
+            interval=int(self.interval_entry.value),
             classes=self.class_list_entry.value)
         messagebox.showinfo("Success!", "Config file saved successfully!")

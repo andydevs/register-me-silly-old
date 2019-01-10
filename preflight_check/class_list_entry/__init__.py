@@ -32,11 +32,11 @@ class ClassListEntry(Frame):
         self.add_class = AddClass(self, add_command=self.handle_add_class)
         self.add_class.pack(side=BOTTOM, fill=X, pady=1)
 
-    def handle_add_class(self, class_id, class_url):
+    def handle_add_class(self, klass):
         """
         Docstring for handle_add_class
         """
-        self.class_list.add_class(class_id, class_url)
+        self.class_list.add_class(klass)
 
     @property
     def value(self):
