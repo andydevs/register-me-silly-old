@@ -22,4 +22,5 @@ class LabeledEntry(LabeledInput):
         # Value for entry
         self.entry = Entry(self)
         self.entry.pack(side=TOP, anchor=W, fill=X)
+        self.entry.delete(0, END)
         self.entry.insert(0, value)

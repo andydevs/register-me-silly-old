@@ -23,11 +23,16 @@ class Class(Frame):
         self.class_id_label.pack(anchor=W, padx=1, pady=1)
 
         # Class URL Label
-        self.url_label = Label(self, text=klass['url'])
+        self.url_label = Label(self,
+            text=klass['url'],
+            wraplength=390,
+            justify=LEFT)
         self.url_label.pack(anchor=W, padx=1, pady=1)
 
         # Delete Class Button
-        self.delete_button = Button(self, text='Delete', command=self.delete)
+        self.delete_button = Button(self,
+            text='Delete',
+            command=self.delete)
         self.delete_button.pack(anchor=NW, padx=1, pady=1)
 
     def delete(self):

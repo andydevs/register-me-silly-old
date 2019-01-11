@@ -22,4 +22,5 @@ class LabeledSpinbox(LabeledInput):
         # Value for entry
         self.entry = Spinbox(self, from_=0, to=1000)
         self.entry.pack(side=TOP, anchor=W, fill=X)
+        self.entry.delete(0, END)
         self.entry.insert(0, value)
