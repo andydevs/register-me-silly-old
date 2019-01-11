@@ -19,5 +19,6 @@ if __name__ == '__main__':
         classes=classes)
     app.pack(fill=X)
     window.title('Configure Register-Me-Silly')
-    window.minsize(400, 300)
+    window.geometry('300x400')
+    window.resizable(False, True)
     window.mainloop()
